@@ -12,13 +12,11 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentHeight
-import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Email
 import androidx.compose.material.icons.filled.Phone
 import androidx.compose.material.icons.filled.Share
 import androidx.compose.material3.Icon
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -28,7 +26,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.semantics.Role.Companion.Image
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -62,12 +59,12 @@ fun BusinessCard(painting: Painter,name:String, role:String,phoneNumber :String,
     Column(modifier = modifier) {
 
         InfoCard(painting,name, role, modifier.weight(1f))
-        contactInfo(phoneNumber = phoneNumber, share = share, mailId =mailId , modifier = modifier.weight(1f) )
+        ContactInfo(phoneNumber = phoneNumber, share = share, mailId =mailId , modifier = modifier.weight(1f) )
 
     }
 }
 @Composable
-fun contactInfo(phoneNumber:String, share: String, mailId: String, modifier: Modifier){
+fun ContactInfo(phoneNumber:String, share: String, mailId: String, modifier: Modifier){
     Column(
         modifier
             .fillMaxHeight(0.5f)
@@ -92,7 +89,7 @@ fun InfoCard(painting: Painter, name:String, role:String, modifier :Modifier ){
     }
 }
 @Composable
-fun contactInfoCard(contactInfo: ContactInfo){
+fun ContactInfoCard(contactInfo: ContactInfo){
       val iconColor = Color(0xFF0C6B37)
   when (contactInfo) {
       is ContactInfo.PhoneNumber -> {
@@ -132,9 +129,9 @@ fun contactInfoCard(contactInfo: ContactInfo){
 @Composable
 fun Table(phoneNumber:String, share: String,mailId: String){
    Column(modifier = Modifier.wrapContentHeight(align = Alignment.Top).padding(50.dp)) {
-       contactInfoCard(contactInfo = ContactInfo.PhoneNumber(phoneNumber))
-       contactInfoCard(contactInfo = ContactInfo.Share(share))
-       contactInfoCard(contactInfo = ContactInfo.Email(mailId))
+       ContactInfoCard(contactInfo = ContactInfo.PhoneNumber(phoneNumber))
+       ContactInfoCard(contactInfo = ContactInfo.Share(share))
+       ContactInfoCard(contactInfo = ContactInfo.Email(mailId))
    }
 }
 
